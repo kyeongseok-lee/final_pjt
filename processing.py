@@ -11,4 +11,5 @@ with open(input_file_name, "r", encoding="utf-8", newline="") as input_file, \
     # 그 다음 줄부터 zip으로 묶어서 json으로 dumps
     for cols in reader:
         doc = {col_name: col for col_name, col in zip(col_names, cols)}
-        print(json.dumps(doc, ensure_ascii=False), file=output_file)asdfasdf
+        print(json.dumps(doc, ensure_ascii=False), file=output_file)
+    print('hello')
