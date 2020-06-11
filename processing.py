@@ -12,3 +12,4 @@ with open(input_file_name, "r", encoding="utf-8", newline="") as input_file, \
     for cols in reader:
         doc = {col_name: col for col_name, col in zip(col_names, cols)}
         print(json.dumps(doc, ensure_ascii=False), file=output_file)
+    print('hello')
