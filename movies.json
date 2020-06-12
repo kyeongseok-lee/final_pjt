@@ -1,0 +1,29 @@
+[
+    {
+        "model": "movies.genre",
+        "pk": 1,
+        "fields": {
+            "name": "\uc2a4\ub9b4\ub7ec"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 2,
+        "fields": {
+            "title": "\uc2e0\uc138\uacc4",
+            "original_title": "\uc2e0\uc138\uacc4\uc5d0\uc5d0\u3154",
+            "overview": "\u314b\u314b\u314b\u314b",
+            "release_data": "2020-06-11",
+            "popularity": 300000.0,
+            "vote_count": 30000,
+            "vote_average": 9.0,
+            "adult": false,
+            "poster_path": "text",
+            "backdrop_path": "text",
+            "genres": [
+                1
+            ],
+            "users_like": []
+        }
+    }
+]
