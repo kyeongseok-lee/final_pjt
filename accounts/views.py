@@ -14,4 +14,12 @@ def signup(request):
             auth_login(request, user)
             # return redirect(request.GET.get('next') or 'movies:hello')
             return redirect('accounts:index')
+
+def index(request):
+    pass
             
+def login(request):
+    pass
+
+def logout(request):
+    pass
