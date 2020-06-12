@@ -19,8 +19,13 @@
   <nav class="navbar navbar-expand-lg bg-secondary container top-fixed">
     <div class="mr-auto p-2"><a class="navbar-brand text-light" href="#">Home</a></div>
     <div class="d-flex align-middle">
-      <div class="p-2 "><a class="navbar text-light text-decoration-none" href="#">Recommend</a></div>
-      <div class="p-2"><a class="navbar text-light text-decoration-none" href="#">Login</a></div>
+      {% if request.user.is_authenticated %}
+      <div class="p-2 "><a class="navbar text-light text-decoration-none" href="#"><a class="nav-link" href="{% url 'accounts:profile' request.user.username %}">환영합니다! {{ request.user.username }}님:) </a>/div>
+      <div class="p-2"><a class="navbar text-light text-decoration-none" href="#"><a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a></a></div>
+      {% else %}
+      <div><a class="nav-link" href="{% url 'accounts:login' %}">로그인</a></div>
+      <div><a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a></div>
+      {% endif %}
     </div>
   </nav>
   <div class="container">
