@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>프로필</h1>
+  <hr>
+  <h3>{{ user.username }}</h3>
+  {% with user_followers=user.followers.all %}
+    {% if request.user != user %}
+      {% if request.user in user_followers %}
+        <a href="{% url 'accounts:follow' user.username %}">unfollow</a>
+      {% else %}
+        <a href="{% url 'accounts:follow' user.username %}">follow</a>
+      {% endif %}
+    {% endif %}
+    <p>followers: {{ user_followers|length }}</p>
+    <p>followings: {{ user.followings.count }}</p>
+  {% endwith %}
+{% endblock %}
