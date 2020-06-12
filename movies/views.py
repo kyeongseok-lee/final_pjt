@@ -14,5 +14,6 @@ def index(request):
         'movies': movies,
         'page_number': page_number,
         'page_obj' : page_obj,
+        
     }
     return render(request, 'movies/index.html', context)
