@@ -9,7 +9,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     original_title = models.CharField(max_length=100)
     overview = models.TextField()
-    release_data = models.DateField()
+    release_date = models.DateField()
     popularity = models.FloatField()
     vote_count = models.IntegerField()
     vote_average = models.FloatField()
@@ -17,7 +17,7 @@ class Movie(models.Model):
     poster_path = models.CharField(max_length=500)
     backdrop_path = models.CharField(max_length=500)
     genres = models.ManyToManyField(Genre, related_name='movies')
-    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
+    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies', blank=True)
 
 
 class Review(models.Model):
@@ -28,4 +28,4 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
+    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews', blank=True)
