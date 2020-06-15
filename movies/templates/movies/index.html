@@ -30,7 +30,7 @@
         <h2 class="section-heading text-uppercase">Movie Poster</h2>
     </div>
     <div class="row">
-      {% for page in page_obj %}
+      {% for movie in movies %}
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
           <div class="portfolio-hover">
@@ -38,8 +38,8 @@
               <img class="img-fluid" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
             </a>
             <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">{{ page.title }} | {{ page.popularity }}</div>
-              <div class="portfolio-caption-subheading text-muted">{{ page.original_title }}</div>
+              <div class="portfolio-caption-heading">{{ movie.title }} | {{ movie.popularity }}</div>
+              <div class="portfolio-caption-subheading text-muted">{{ movie.original_title }}</div>
             </div>
           </div>
         </div>
@@ -53,13 +53,13 @@
                         <div class="col-lg-8">
                             <div class="modal-body">
                                 <!-- Project Details Go Here-->
-                                <h2 class="text-uppercase">{{ page.title }}</h2>
-                                <p class="item-intro text-muted">{{ page.original_title }}</p>
+                                <h2 class="text-uppercase">{{ movie.title }}</h2>
+                                <p class="item-intro text-muted">{{ movie.original_title }}</p>
                                 <img class="img-fluid d-block mx-auto" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
-                                <p>{{ page.overview }}</p>
+                                <p>{{ movie.overview }}</p>
                                 <ul class="list-inline">
-                                    <li>{{ page.release_date }}</li>
-                                    <li>{{ page.genres }}</li>
+                                    <li>{{ movie.release_date }}</li>
+                                    <li>{{ movie.genres }}</li>
                                 </ul>
                             </div>
                         </div>
