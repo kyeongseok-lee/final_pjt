@@ -10,5 +10,7 @@ urlpatterns = [
     path('<int:movie_pk/create_review/', views.create_review, name='create_review')
     path('<int:movie_pk/<int:review_pk>/update/', views.update_review, name='update_review'),
     path('<int:movie_pk/<int:review_pk>/delete/', views.delete_review, name='delete_review'),
+    path('movieform/', views.movieform, name='movieform'),
+    path('movieform/<int:movielist_pk>/list/', views.movielsit, name='movielist'),
 ]
 
