@@ -27,6 +27,7 @@ class MovielistForm(forms.ModelForm):
     class Meta:
         model = Movielist
         fields = ['genre', 'vote_average']
+        
 
 class ReviewForm(forms.ModelForm):
     class Meta:

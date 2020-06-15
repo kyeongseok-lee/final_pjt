@@ -26,7 +26,8 @@ def movieform(request):
         'form': form,
     }
     return render(request, 'movies/index.html', context)
-
+  
+  
 def movielist(request, movielist_pk):
     movielist = Movielist.objects.get(pk=movielist_pk)
     movies = Movie.objects.filter(genres=movielist.genre, vote_average__gte=movielist.vote_average)
@@ -41,16 +42,55 @@ def movielist(request, movielist_pk):
     }
     return render(request, 'movies/movie_list.html', context)
 
+
+@login_required
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
-    form = ReviewForm()
     reviews = Review.objects.order_by('-pk')
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.movie = movie
+            review.save()
+            return redirect('movies:movie_detail', movie_pk)
+    else:
+        form = ReviewForm()
     context = {
         'movie': movie,
         'form': form,
         'reviews': reviews,
     }
-    return render(requestm, 'movies/movie_detail.html', context)
+    return render(request, 'movies/movie_detail.html', context)
+
+
+@login_required
+def update_review(request, movie_pk, review_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    review = get_object_or_404(Review, pk=review_pk)
+    if request.user == review.user:
+        if request.method == 'POST':
+            form = ReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                form.save()
+                return redirect('movies:movie_detail', movie_pk)
+        else:
+            form = ReviewForm(instance=review)
+        context = {
+            'form': form,
+        }
+        return render(request, 'movies/update_review.html', context)
+    else:
+        return redirect('movies:movie_detail', movie_pk)
+
+@require_POST
+@login_required
+def delete_review(request, movie_pk, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    if request.user == review.user:
+        review.delete()
+    return redirect('movies:movie_detail', movie_pk)
 
 
 def recommend(request):
