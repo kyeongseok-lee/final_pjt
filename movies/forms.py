@@ -1,5 +1,5 @@
 from django import forms
-from .models import Recommend
+from .models import Recommend, Review, Comment
 
 class RecommendForm(forms.ModelForm):
     GENRE_CHOICES = (
@@ -27,3 +27,15 @@ class RecommendForm(forms.ModelForm):
     class Meta:
         model = Recommend
         fields = ['genre', 'vote_average']
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['title', 'content', 'rank']
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+

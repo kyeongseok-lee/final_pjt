@@ -30,18 +30,42 @@
         <h2 class="section-heading text-uppercase">Movie Poster</h2>
     </div>
     <div class="row">
-      {% for page in page_obj %}
+      {% for movie in movies %}
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="portfolio-item">
           <div class="portfolio-hover">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+            <a class="portfolio-link" data-toggle="modal" data-target="#movie-{{page.id}}" href="#portfolioModal1">
               <img class="img-fluid" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
             </a>
             <div class="portfolio-caption">
-              <div class="portfolio-caption-heading">{{ page.title }} | {{ page.vote_average }}</div>
-              <div class="portfolio-caption-subheading text-muted">{{ page.original_title }}</div>
+              <div class="portfolio-caption-heading">{{ movie.title }} | {{ movie.popularity }}</div>
+              <div class="portfolio-caption-subheading text-muted">{{ movie.original_title }}</div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="portfolio-modal modal fade" id="movie-{{page.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here-->
+                                <h2 class="text-uppercase">{{ movie.title }}</h2>
+                                <p class="item-intro text-muted">{{ movie.original_title }}</p>
+                                <img class="img-fluid d-block mx-auto" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
+                                <p>{{ movie.overview }}</p>
+                                <ul class="list-inline">
+                                    <li>{{ movie.release_date }}</li>
+                                    <li>{{ movie.genres }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
       {% endfor %}
@@ -58,7 +82,7 @@
             <div class="col-lg-6">
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="" />
-                    <h4>Kyoungseok Lee</h4>
+                    <h4>Kyeongseok Lee</h4>
                     <p class="text-muted">Lead Developer</p>
                     
                 </div>
@@ -86,30 +110,7 @@
         </div>
     </div>
 </footer>
-<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-          <div class="container">
-              <div class="row justify-content-center">
-                  <div class="col-lg-8">
-                      <div class="modal-body">
-                          <!-- Project Details Go Here-->
-                          <h2 class="text-uppercase">{{ page.title }}</h2>
-                          <p class="item-intro text-muted">{{ page.original_title }}</p>
-                          <img class="img-fluid d-block mx-auto" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
-                          <p>{{ page.overview }}</p>
-                          <ul class="list-inline">
-                              <li>{{ page.release_date }}</li>
-                              <li>{{ page.genres }}</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+
 
 
 <!-- Bootstrap core JS-->
