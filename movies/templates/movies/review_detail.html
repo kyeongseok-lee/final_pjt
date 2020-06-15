@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>Review detail</h1>
+  <hr>
+  <h3>{{ review.title }}</h3>
+  <h4>{{ review.content }} {{ review.rank }}</h4>
+  <div>
+    {% if user in review.users_like.all %}
+        <i class="fas fa-heart fa-lg like-btn" style="color:crimson; cursor: pointer;" data-m="{{ movie.pk }}" data-id="{{ review.pk }}"></i>
+    {% else %}
+      <i class="fas fa-heart fa-lg like-btn" style="color:black; cursor: pointer;" data-m="{{ movie.pk }}" data-id="{{ review.pk }}"></i>
+    {% endif %}
+    <span id="likeCount{{ review.pk }}">{{ review.users_like.all|length }} 명이 좋아합니다.</span>
+  </div>
+  {% for comment in review.comment_set.all %}
+    <div class='mt-5 mb-5'>
+      <h4>{{ comment.content }}</h4>
+      {% if comment.user == request.user %}
+        <form action="{% url 'movies:delete_comment' movie.pk review.pk comment.pk %}" method="POST" class="d-inline">
+          {% csrf_token %}
+          <button class="btn btn-warning">삭제</button>
+        </form>
+        <a href="{% url 'movies:update_comment' movie.pk review.pk comment.pk %}">
+          <button class="btn btn-info">수정</button>
+        </a>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <h3 class="mt-5">New comment</h3>
+  <form action="{% url 'movies:review_detail' movie.pk review.pk %}" method='POST'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary">작성</button>
+  </form>
+
+  <script>
+    const likeBtns = document.querySelectorAll('i.like-btn')
+    likeBtns.forEach(likeBtn => {
+      likeBtn.addEventListener('click', event => {
+        {% if user.is_authenticated %}
+          const movie_pk = event.target.dataset.m
+          const review_pk = event.target.dataset.id
+          axios.get(`/movies/${movie_pk}/${review_pk}/like/`)
+            .then(res => {
+              const { liked, count } = res.data
+              if (liked) {
+                event.target.style.color = 'crimson'
+              } else {
+                event.target.style.color = 'black'
+              }
+              document.querySelector(`#likeCount${review_pk}`).innerText = count + '명이 이 글을 좋아합니다.'
+            })
+        {% else %}
+          alert('로그인이 필요합니다')
+        {% endif %}
+      })
+    })
+  </script>
+{% endblock %}

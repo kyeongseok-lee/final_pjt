@@ -8,9 +8,22 @@
   <div>
     <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie_poster">
   </div>
+  <ul>
+    <li>{{ movie.overview }}</li>
+    <li>
+      {% if user in movie.users_like.all %}
+        <i class="fas fa-heart fa-lg like-btn" style="color:crimson; cursor: pointer;" data-id="{{ movie.pk }}"></i>
+      {% else %}
+        <i class="fas fa-heart fa-lg like-btn" style="color:black; cursor: pointer;" data-id="{{ movie.pk }}"></i>
+      {% endif %}
+      <span id="likeCount{{ movie.pk }}">{{ movie.users_like.all|length }} 명이 좋아합니다.</span>
+    </li>
+  </ul>
   {% for review in movie.review_set.all %}
     <div class='mt-5 mb-5'>
-      <h4>{{ review.title }}</h4>
+      <a href="{% url 'movies:review_detail' movie.pk review.pk %}">
+        <h4>{{ review.title }}</h4>
+      </a>
       <h5>{{ review.content }} {{review.rank }}</h5>
       {% if review.user == request.user %}
         <form action="{% url 'movies:delete_review' movie.pk review.pk %}" method="POST" class="d-inline">
@@ -29,4 +42,28 @@
     {% bootstrap_form form %}
     <button class="btn btn-primary">작성</button>
   </form>
+
+<script>
+  const likeBtns = document.querySelectorAll('i.like-btn')
+  likeBtns.forEach(likeBtn => {
+    likeBtn.addEventListener('click', event => {
+      {% if user.is_authenticated %}
+        const movie_pk = event.target.dataset.id
+        axios.get(`/movies/${movie_pk}/like/`)
+          .then(res => {
+            const { liked, count } = res.data
+            if (liked) {
+              event.target.style.color = 'crimson'
+            } else {
+              event.target.style.color = 'black'
+            }
+            document.querySelector(`#likeCount${movie_pk}`).innerText = count + '명이 좋아합니다.'
+          })
+      {% else %}
+        alert('로그인이 필요합니다')
+      {% endif %}
+    })
+  })
+</script>
+
 {% endblock %}
