@@ -8,6 +8,33 @@ import datetime
 
 
 def index(request):
+
+    movies = Movie.objects.order_by('pk')
+    paginator = Paginator(movies, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'movies': movies,
+        'page_number': page_number,
+        'page_obj' : page_obj,
+
+    }
+    return render(request, 'movies/index.html', context)
+
+def movielist(request, movielist_pk):
+    recommend = Recommend.objects.get(pk=recommend_pk)
+    movies = Movie.objects.filter(genres=recommend.genre, vote_average__gte=recommend.vote_average)
+
+    paginator = Paginator(movies, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'movies': movies,
+        'page_number': page_number,
+        'page_obj' : page_obj,
+    }
+    return render(request, 'movies/recommend_list.html', context)
+
     movies = Movie.objects.order_by('pk')[:6]
     context = {
         'movies': movies,
@@ -43,5 +70,6 @@ def recommend(request):
         'movies_day': movies_day,
     }
     return render(request, 'movies/recommend.html', context)
+
 
 
