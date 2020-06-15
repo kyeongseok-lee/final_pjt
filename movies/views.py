@@ -2,9 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from .models import Movie, Genre, Review, Comment
-from .forms import ReviewForm, CommentForm
+from .models import Movie, Genre, Review, Comment, Movielist
+from .forms import MovielistForm, ReviewForm, CommentForm
 import datetime
+
 
 def index(request):
     movies = Movie.objects.order_by('pk')[:6]
@@ -13,22 +14,24 @@ def index(request):
     }
     return render(request, 'movies/index.html', context)
 
+
+
 @login_required
-def movieform(request):
+def movie_form(request):
     if request.method == 'POST':
         form = MovielistForm(request.POST)
         if form.is_valid():
             movielist = form.save()
-            return redirect('movies:movielist', movielist.pk)
+            return redirect('movies:movie_list', movielist.pk)
     else:
         form = MovielistForm()
     context = {
         'form': form,
     }
-    return render(request, 'movies/index.html', context)
-  
-  
-def movielist(request, movielist_pk):
+    return render(request, 'movies/movie_form.html', context)
+
+
+def movie_list(request, movielist_pk):
     movielist = Movielist.objects.get(pk=movielist_pk)
     movies = Movie.objects.filter(genres=movielist.genre, vote_average__gte=movielist.vote_average)
 
@@ -42,11 +45,10 @@ def movielist(request, movielist_pk):
     }
     return render(request, 'movies/movie_list.html', context)
 
-
+   
 @login_required
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
-    reviews = Review.objects.order_by('-pk')
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -60,7 +62,6 @@ def movie_detail(request, movie_pk):
     context = {
         'movie': movie,
         'form': form,
-        'reviews': reviews,
     }
     return render(request, 'movies/movie_detail.html', context)
 
