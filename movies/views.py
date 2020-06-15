@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Movie, Genre
 
 def index(request):
-    movies = Movie.objects.order_by('-pk')
+    movies = Movie.objects.order_by('pk')
     paginator = Paginator(movies, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -14,6 +14,20 @@ def index(request):
         'movies': movies,
         'page_number': page_number,
         'page_obj' : page_obj,
-        
+
     }
     return render(request, 'movies/index.html', context)
+
+def movielist(request, movielist_pk):
+    recommend = Recommend.objects.get(pk=recommend_pk)
+    movies = Movie.objects.filter(genres=recommend.genre, vote_average__gte=recommend.vote_average)
+
+    paginator = Paginator(movies, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'movies': movies,
+        'page_number': page_number,
+        'page_obj' : page_obj,
+    }
+    return render(request, 'movies/recommend_list.html', context)

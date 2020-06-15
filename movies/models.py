@@ -29,3 +29,7 @@ class Review(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews', blank=True)
+
+class Movielist(models.Model):
+    genre = models.CharField(max_length=100)
+    vote_average = models.IntegerField()
