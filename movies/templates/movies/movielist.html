@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap_pagination %}
+
+{% block content %}
+
+<h2>Movie LIST</h2>
+
+<div class="row">
+    {% for page in page_obj %}
+    <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="portfolio-item">
+            <div class="portfolio-hover">
+                <img class="img-fluid" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
+                <div class="portfolio-caption">
+                    <div class="portfolio-caption-heading">{{ page.title }} | {{ page.popularity }}</div>
+                    <div class="portfolio-caption-subheading text-muted">{{ page.original_title }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+<div class="d-flex justify-content-center">
+    {% bootstrap_paginate page_obj range=5 show_prev_next="false" show_first_last="true" %}
+</div>
+
+{% endblock %}

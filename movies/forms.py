@@ -1,7 +1,7 @@
 from django import forms
-from .models import Recommend, Review, Comment
+from .models import Movielist, Review, Comment
 
-class RecommendForm(forms.ModelForm):
+class MovielistForm(forms.ModelForm):
     GENRE_CHOICES = (
 	('12', 'Adventure'),
     ('14', 'Fantasy'),
@@ -25,7 +25,7 @@ class RecommendForm(forms.ModelForm):
     )
     genre = forms.ChoiceField(choices = GENRE_CHOICES)
     class Meta:
-        model = Recommend
+        model = Movielist
         fields = ['genre', 'vote_average']
 
 class ReviewForm(forms.ModelForm):
