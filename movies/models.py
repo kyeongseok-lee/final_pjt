@@ -31,9 +31,9 @@ class Review(models.Model):
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews', blank=True)
 
     
-# class Movielist(models.Model):
-#     genre = models.CharField(max_length=100)
-#     vote_average = models.IntegerField()
+class Movielist(models.Model):
+    genre = models.CharField(max_length=100)
+    vote_average = models.IntegerField()
 
 
 class Comment(models.Model):

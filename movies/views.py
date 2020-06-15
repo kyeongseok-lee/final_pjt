@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from .models import Movie, Genre, Review, Comment
-from .forms import ReviewForm, CommentForm
+from .models import Movie, Genre, Review, Comment, Movielist
+from .forms import ReviewForm, CommentForm, MovielistForm
 import datetime
 
 def index(request):
@@ -14,21 +14,21 @@ def index(request):
     return render(request, 'movies/index.html', context)
 
 @login_required
-def movieform(request):
+def movie_form(request):
     if request.method == 'POST':
         form = MovielistForm(request.POST)
         if form.is_valid():
             movielist = form.save()
-            return redirect('movies:movielist', movielist.pk)
+            return redirect('movies:movie_list', movielist.pk)
     else:
         form = MovielistForm()
     context = {
         'form': form,
     }
-    return render(request, 'movies/index.html', context)
+    return render(request, 'movies/movie_form.html', context)
   
   
-def movielist(request, movielist_pk):
+def movie_list(request, movielist_pk):
     movielist = Movielist.objects.get(pk=movielist_pk)
     movies = Movie.objects.filter(genres=movielist.genre, vote_average__gte=movielist.vote_average)
 
