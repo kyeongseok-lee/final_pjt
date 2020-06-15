@@ -30,7 +30,6 @@ def movie_form(request):
     }
     return render(request, 'movies/movie_form.html', context)
 
-
 def movie_list(request, movielist_pk):
     movielist = Movielist.objects.get(pk=movielist_pk)
     movies = Movie.objects.filter(genres=movielist.genre, vote_average__gte=movielist.vote_average)
