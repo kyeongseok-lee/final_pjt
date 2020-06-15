@@ -35,7 +35,7 @@
         <div class="portfolio-item">
           <div class="portfolio-hover">
             <a class="portfolio-link" data-toggle="modal" data-target="#movie-{{page.id}}" href="#portfolioModal1">
-              <img class="img-fluid" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
+              <img class="img-fluid" src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" alt="">
             </a>
             <div class="portfolio-caption">
               <div class="portfolio-caption-heading">{{ movie.title }} | {{ movie.popularity }}</div>
@@ -55,7 +55,7 @@
                                 <!-- Project Details Go Here-->
                                 <h2 class="text-uppercase">{{ movie.title }}</h2>
                                 <p class="item-intro text-muted">{{ movie.original_title }}</p>
-                                <img class="img-fluid d-block mx-auto" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
+                                <img class="img-fluid d-block mx-auto" src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" alt="">
                                 <p>{{ movie.overview }}</p>
                                 <ul class="list-inline">
                                     <li>{{ movie.release_date }}</li>

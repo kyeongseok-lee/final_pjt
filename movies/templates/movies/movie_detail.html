@@ -8,7 +8,7 @@
   <div>
     <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie_poster">
   </div>
-  {% for review in reviews %}
+  {% for review in movie.review_set.all %}
     <div class='mt-5 mb-5'>
       <h4>{{ review.title }}</h4>
       <h5>{{ review.content }} {{review.rank }}</h5>
