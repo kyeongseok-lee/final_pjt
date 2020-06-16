@@ -4,6 +4,7 @@
 {% block content %}
 
 <!-- Poster -->
+
 <div class="col align-self-center">
   <section class="page-section bg-light" id="portfolio">
     <div class="container">
@@ -18,7 +19,7 @@
             <div class="mt-3">
               <div class="row row-cols-5">
               {% for movie in movies_1 %}
-                <div class="col p-1">
+                <div class="col p-0">
                   <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
                 </div>
               {% endfor %}
@@ -29,7 +30,7 @@
             <div class="">
               <div class="row row-cols-5">
               {% for movie in movies_2 %}
-                <div class="col p-1">
+                <div class="col p-0">
                   <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
                 </div>
               {% endfor %}
@@ -40,7 +41,7 @@
             <div class="">
               <div class="row row-cols-5">
               {% for movie in movies_3 %}
-                <div class="col p-1">
+                <div class="col p-0">
                   <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
                 </div>
               {% endfor %}
@@ -78,6 +79,7 @@
             </div>
         </div>
     </div>
+    <!-- </div> -->
   </section>
   <!-- Team-->
   <section class="page-section bg-light" id="team">
@@ -101,7 +103,8 @@
                 </div>
             </div>
         </div>
-      </div>
+    </div>
+      <!-- </div> -->
   </section>
   <!-- Footer-->
   <footer class="footer py-4 bg-light">
