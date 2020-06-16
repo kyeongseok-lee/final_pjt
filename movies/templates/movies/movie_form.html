@@ -5,15 +5,42 @@
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="card wow fadeInRight w-75">
       <div class="card-body">
-        <div class="text-center">
-          <h3 class="white-text">
-            <i class="fab fa-angellist white-text"></i> Select Genre AND Rank !!</h3>
-          <hr class="hr-light">
+        <div class="white-text">
+          <div class="d-inline d-flex justify-content-center">
+            <h3>
+              <i class="fab fa-angellist white-text"></i> Select Genre AND Rank !!
+            </h3>
+            <button type="button" class="btn btn-info ml-5" data-toggle="modal" data-target="#exampleModal">
+              Description
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select Recommend</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-left">
+                    <h5>1. 장르를 선택해주세요!</h5>
+                    <h5>2. 평점을 입력해주세요!</h5>
+                    <h5>3. 원하시는 장르의 입력하신 평점 이상의 영화를 추천해드립니다~~!!</h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
         </div>
+        <hr class="hr-light">
+        
         <form action="" method="POST">
           {% csrf_token %}
           {% bootstrap_form form %}
-          <button class="btn btn-primary">제출</button>
+          <button class="btn btn-primary d-flex justify-content-end">제출</button>
         </form>
       </div>
     </div>

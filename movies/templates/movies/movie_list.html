@@ -2,27 +2,39 @@
 {% load bootstrap_pagination %}
 
 {% block content %}
-<div class="d-flex jutify-content-center " style="height: 10vh;"></div>
-<div class="bg-light pl-2 pr-2 bg-light">
-<h2>Movie LIST</h2>
-<div class="row">
-    {% for page in page_obj %}
-    <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="portfolio-item">
-            <div class="portfolio-hover">
-                <a href="{% url 'movies:movie_detail' page.pk %}">
-                    <img class="img-fluid" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <div class="portfolio-caption-heading">{{ page.title }} | {{ page.popularity }}</div>
-                    <div class="portfolio-caption-subheading text-muted">{{ page.original_title }} {{ page.vote_average }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="pagination jutify-content-center m-auto">
-        {% bootstrap_paginate page_obj range=5 show_prev_next="false" show_first_last="true" %}
-    </div>
-</div>
+	{% if page_obj %}
+	<h1 class="text-center">Results</h1>
+  <div class="container pl-2 pr-2" style="background-color: #000000;">
+    <div class="row">
+				{% for page in page_obj %}
+				<div class="col-lg-4 col-sm-6 p-2">
+					<div class="card">
+						<a href="{% url 'movies:movie_detail' page.pk %}">
+							<img class="img-fluid" src="https://image.tmdb.org/t/p/w1280{{ page.poster_path }}" alt="">
+						</a>	
+						<div class="card-body">
+							<h4 class="card-title">{{ page.title }} <span class="badge badge-danger">{{ page.vote_average }}</span></h4>
+							<h5 class="card-text">{{ page.original_title }}</h5>
+							<h5>
+								<ol class="breadcrumb">
+								{% for genre in page.genres.all %}
+									<li class="breadcrumb-item">{{ genre.name }}</li>
+								{% endfor %}
+								</ol>
+							</h5>
+						</div>
+					</div>
+				</div>
+        {% endfor %}
+		</div>
+		<div class="pagination d-flex justify-content-center">
+			{% bootstrap_paginate page_obj range=5 show_prev_next="false" show_first_last="true" %}
+		</div>
+	</div>
+	{% else %}
+	<div class="text-center py-5" style="height: 100vh;">
+		<h3>결과 없음</h3>
+		<h5 class="text-white">원하시는 조건에 대한 결과가 없습니다. 새로운 검색을 시도해주세요!</h5>
+	</div>
+	{% endif %}
 {% endblock %}
