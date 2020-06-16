@@ -3,23 +3,23 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <h1>Movie detail</h1>
+<div class="d-flex jutify-content-center align-items-center" style="height: 10vh;"></div>
+<div class="bg-light pl-2 pr-2">
+<h1>Movie detail</h1>
   <hr>
   <h3>{{ movie.title }}</h3>
   <div>
     <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie_poster">
   </div>
-  <ul>
-    <li>{{ movie.overview }}</li>
-    <li>
-      {% if user in movie.users_like.all %}
-        <i class="fas fa-heart fa-lg like-btn" style="color:crimson; cursor: pointer;" data-id="{{ movie.pk }}"></i>
-      {% else %}
-        <i class="fas fa-heart fa-lg like-btn" style="color:black; cursor: pointer;" data-id="{{ movie.pk }}"></i>
-      {% endif %}
-      <span id="likeCount{{ movie.pk }}">{{ movie.users_like.all|length }} 명이 좋아합니다.</span>
-    </li>
-  </ul>
+  <li class="list-group">{{ movie.overview }}</li>
+  <li class="list-group">
+    {% if user in movie.users_like.all %}
+      <i class="fas fa-heart fa-lg like-btn mt-1" style="color:crimson; cursor: pointer;" data-id="{{ movie.pk }}"></i>
+    {% else %}
+      <i class="fas fa-heart fa-lg like-btn mt-1" style="color:black; cursor: pointer;" data-id="{{ movie.pk }}"></i>
+    {% endif %}
+    <span id="likeCount{{ movie.pk }}">{{ movie.users_like.all|length }} 명이 좋아합니다.</span>
+  </li>
   {% for review in movie.review_set.all %}
     <div class='mt-5 mb-5'>
       <a href="{% url 'movies:review_detail' movie.pk review.pk %}">
@@ -66,5 +66,5 @@
     })
   })
 </script>
-
+</div>  
 {% endblock %}
