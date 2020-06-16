@@ -1,9 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form action="" method='POST'>
+  <!--Form-->
+  
+  <div class="card wow fadeInRight mt-5">
+    <div class="card-body">
+      <!--Header-->
+      <div class="text-center">
+        <h3 class="white-text">
+          <i class="fas fa-user white-text"></i> Register</h3>
+        <hr class="hr-light">
+      </div>
+      <!--Body-->
+      <form action="" method="POST">
+        {% csrf_token %}
+        <!-- {{ form }}
+         -->
+        <div>
+          <i class="fas fa-user prefix white-text active"></i> 
+          <!-- <label for="{{ form.username.id_for_label }}">Your name</label> -->
+          Your name
+          <br>
+          <div class="white-text form-control">
+            {{ form.username }}
+          </div>
+        </div>
+        <div>
+          <i class="fas fa-lock prefix white-text active"></i>
+          <!-- <label for="{{ form.password1.id_for_label }}">비밀번호</label> -->
+          password
+          <br>
+          <div class="white-text form-control">
+            {{ form.password1 }}
+          </div>
+        </div>
+        <div>
+          <i class="fas fa-lock prefix white-text active"></i>
+          <!-- <label for="{{ form.password2.id_for_label }}">비밀번호 확인</label> -->
+          password_confirmation
+          <br>
+          <div class="white-text form-control">
+            {{ form.password2 }}
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button class="btn btn-indigo">Sign up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!--/.Form-->        
+  <!-- <form action="" method='POST'>
     {% csrf_token %}
     {{ form.as_p }}
     <button>회원가입</button>
-  </form>
+  </form> -->
 {% endblock %}
