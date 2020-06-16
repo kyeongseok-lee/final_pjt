@@ -6,8 +6,8 @@
 <!-- Poster -->
 
 <div class="col align-self-center">
-  <section class="page-section bg-light" id="portfolio">
-    <div class="container">
+  <section class="page-section" id="portfolio" style="background-color: #000000;">
+    <div class="">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -16,36 +16,30 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="mt-3">
-              <div class="row row-cols-5">
-              {% for movie in movies_1 %}
-                <div class="col p-0">
-                  <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
-                </div>
-              {% endfor %}
+            <div class="row row-cols-5">
+            {% for movie in movies_1 %}
+              <div class="col p-0">
+                <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
               </div>
+            {% endfor %}
             </div>
           </div>
           <div class="carousel-item">
-            <div class="">
-              <div class="row row-cols-5">
-              {% for movie in movies_2 %}
-                <div class="col p-0">
-                  <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
-                </div>
-              {% endfor %}
+            <div class="row row-cols-5">
+            {% for movie in movies_2 %}
+              <div class="col p-0">
+                <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
               </div>
+            {% endfor %}
             </div>
           </div>
           <div class="carousel-item">
-            <div class="">
-              <div class="row row-cols-5">
-              {% for movie in movies_3 %}
-                <div class="col p-0">
-                  <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
-                </div>
-              {% endfor %}
+            <div class="row row-cols-5">
+            {% for movie in movies_3 %}
+              <div class="col p-0">
+                <img src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" class="img-responsive d-block w-100" alt="...">
               </div>
+            {% endfor %}
             </div>
           </div>
         </div>
