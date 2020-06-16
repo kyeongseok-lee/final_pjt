@@ -4,46 +4,75 @@
 
 {% block content %}
 <div class="d-flex jutify-content-center " style="height: 10vh;"></div>
-<div class="bg-light pl-2 pr-2">
-<h1>Movie detail</h1>
-  <hr>
-  <h3>{{ movie.title }}</h3>
-  <div>
-    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="movie_poster">
+<div class="container bg-light pl-2 pr-2">
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img class="card-img" src="https://image.tmdb.org/t/p/w1280{{ movie.poster_path }}" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{ movie.title }} <span class="badge badge-danger ml-2">{{ movie.vote_average }}</span></h2>
+          <p class="card-text"><small class="text-muted">{{ movie.original_title }}</small></p>
+          <p class="card-text">{{ movie.overview }}</p>
+          <p>
+            <ol class="breadcrumb">
+              {% for genre in movie.genres.all %}
+                <li class="breadcrumb-item">{{ genre.name }}</li>
+              {% endfor %}
+            </ol>
+          </p>
+          <p class="card-text">
+            {% if user in movie.users_like.all %}
+            <i class="fas fa-heart fa-lg like-btn mt-1" style="color:crimson; cursor: pointer;" data-id="{{ movie.pk }}"></i>
+            {% else %}
+            <i class="fas fa-heart fa-lg like-btn mt-1" style="color:black; cursor: pointer;" data-id="{{ movie.pk }}"></i>
+            {% endif %}
+            <span id="likeCount{{ movie.pk }}" class="ml-2">{{ movie.users_like.all|length }} 명이 좋아합니다.</span>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-  <li class="list-group">{{ movie.overview }}</li>
-  <li class="list-group">
-    {% if user in movie.users_like.all %}
-      <i class="fas fa-heart fa-lg like-btn mt-1" style="color:crimson; cursor: pointer;" data-id="{{ movie.pk }}"></i>
-    {% else %}
-      <i class="fas fa-heart fa-lg like-btn mt-1" style="color:black; cursor: pointer;" data-id="{{ movie.pk }}"></i>
-    {% endif %}
-    <span id="likeCount{{ movie.pk }}">{{ movie.users_like.all|length }} 명이 좋아합니다.</span>
-  </li>
-  {% for review in movie.review_set.all %}
-    <div class='mt-5 mb-5'>
-      <a href="{% url 'movies:review_detail' movie.pk review.pk %}">
-        <h4>{{ review.title }}</h4>
-      </a>
-      <h5>{{ review.content }} {{review.rank }}</h5>
+  {% if movie.review_set.all %}
+  <div class="container p-3">
+    <h3 class="mt-5 mb-3">Reviews</h3>
+    {% for review in movie.review_set.all %}
+    <div class="mb-5">
+      <div class="list-group">
+        <a href="{% url 'movies:review_detail' movie.pk review.pk %}" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ review.title }}</h5>
+            <h3>
+              <span class="badge badge-danger ml-2">{{ review.rank }}</span>
+            </h3>
+          </div>
+          <p class="mb-1">{{ review.content }}</p>
+        </a>
+      </div>
       {% if review.user == request.user %}
         <form action="{% url 'movies:delete_review' movie.pk review.pk %}" method="POST" class="d-inline">
           {% csrf_token %}
-          <button class="btn btn-warning">삭제</button>
+          <button class="btn btn-warning"><i class="far fa-trash-alt text-dark"></i></button>
         </form>
         <a href="{% url 'movies:update_review' movie.pk review.pk %}">
-          <button class="btn btn-info">수정</button>
+          <button class="btn btn-info"><i class="far fa-edit text-dark"></i></button>
         </a>
       {% endif %}
-    </div>
-  {% endfor %}
-  <h3 class="mt-5">New Review</h3>
-  <form action="{% url 'movies:movie_detail' movie.pk %}" method='POST'>
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button class="btn btn-primary">작성</button>
-  </form>
-
+    </div>  
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="container p-3">
+    <h3 class="mt-5 mb-3">New Review</h3>
+    <form action="{% url 'movies:movie_detail' movie.pk %}" method='POST'>
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button class="btn btn-primary">작성</button>
+    </form>
+  </div>  
+</div>
+<div class="d-flex jutify-content-center " style="height: 10vh;"></div>
 <script>
   const likeBtns = document.querySelectorAll('i.like-btn')
   likeBtns.forEach(likeBtn => {
@@ -65,6 +94,5 @@
       {% endif %}
     })
   })
-</script>
-</div>  
+</script>  
 {% endblock %}
