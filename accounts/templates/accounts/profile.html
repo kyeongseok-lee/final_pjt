@@ -1,18 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
   <h1>프로필</h1>
   <hr>
-  <h3>{{ user.username }}</h3>
-  {% with user_followers=user.followers.all %}
-    {% if request.user != user %}
-      {% if request.user in user_followers %}
-        <a href="{% url 'accounts:follow' user.username %}">unfollow</a>
-      {% else %}
-        <a href="{% url 'accounts:follow' user.username %}">follow</a>
+<div class="card text-left" style="width: 18rem; margin-bottom: 18rem;!important">
+  <img src="{% static 'unnamed.jpg' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.username }}</h5>
+    <p class="card-text"></p>
+    {% with user_followers=user.followers.all %}
+      {% if request.user != user %}
+        {% if request.user in user_followers %}
+          <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">unfollow</a>
+        {% else %}
+          <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">follow</a>
+        {% endif %}
       {% endif %}
-    {% endif %}
-    <p>followers: {{ user_followers|length }}</p>
-    <p>followings: {{ user.followings.count }}</p>
-  {% endwith %}
+      <p>followers: {{ user_followers|length }}</p>
+      <p>followings: {{ user.followings.count }}</p>
+    {% endwith %}
+  </div>
+</div>
 {% endblock %}
