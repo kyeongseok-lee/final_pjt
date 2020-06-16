@@ -6,7 +6,9 @@
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 @import "bootstrap-social.less";
-
+html, body {
+  height: 100%!important;
+}
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
