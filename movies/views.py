@@ -9,9 +9,13 @@ import datetime
 
 
 def index(request):
-    movies = Movie.objects.order_by('pk')[:6]
+    movies_1 = Movie.objects.order_by('pk')[:10]
+    movies_2 = Movie.objects.order_by('pk')[10:20]
+    movies_3 = Movie.objects.order_by('pk')[20:30]
     context = {
-        'movies': movies,
+        'movies_1': movies_1,
+        'movies_2': movies_2,
+        'movies_3': movies_3,
     }
     return render(request, 'movies/index.html', context)
 
