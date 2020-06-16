@@ -1,59 +1,20 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 {% block content %}
-  <!--Form-->
-  
-  <div class="card wow fadeInRight mt-5">
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card wow fadeInRight w-50">
     <div class="card-body">
-      <!--Header-->
       <div class="text-center">
         <h3 class="white-text">
           <i class="fas fa-user white-text"></i> Register</h3>
         <hr class="hr-light">
       </div>
-      <!--Body-->
       <form action="" method="POST">
         {% csrf_token %}
-        <!-- {{ form }}
-         -->
-        <div>
-          <i class="fas fa-user prefix white-text active"></i> 
-          <!-- <label for="{{ form.username.id_for_label }}">Your name</label> -->
-          Your name
-          <br>
-          <div class="white-text form-control">
-            {{ form.username }}
-          </div>
-        </div>
-        <div>
-          <i class="fas fa-lock prefix white-text active"></i>
-          <!-- <label for="{{ form.password1.id_for_label }}">비밀번호</label> -->
-          password
-          <br>
-          <div class="white-text form-control">
-            {{ form.password1 }}
-          </div>
-        </div>
-        <div>
-          <i class="fas fa-lock prefix white-text active"></i>
-          <!-- <label for="{{ form.password2.id_for_label }}">비밀번호 확인</label> -->
-          password_confirmation
-          <br>
-          <div class="white-text form-control">
-            {{ form.password2 }}
-          </div>
-        </div>
-        <div class="text-center mt-4">
-          <button class="btn btn-indigo">Sign up</button>
-        </div>
+        {% bootstrap_form form %}
+        <button class="btn btn-primary">회원가입</button>
       </form>
     </div>
   </div>
-  
-  <!--/.Form-->        
-  <!-- <form action="" method='POST'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>회원가입</button>
-  </form> -->
+</div>
 {% endblock %}

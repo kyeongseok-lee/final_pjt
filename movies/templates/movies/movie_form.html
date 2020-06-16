@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <button class="btn btn-secondary">제출</button>
-    </form>
-
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card wow fadeInRight w-75">
+      <div class="card-body">
+        <div class="text-center">
+          <h3 class="white-text">
+            <i class="fab fa-angellist white-text"></i> Select Genre AND Rank !!</h3>
+          <hr class="hr-light">
+        </div>
+        <form action="" method="POST">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          <button class="btn btn-primary">제출</button>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -2,24 +2,35 @@
 {% load static %}
 
 {% block content %}
-  <h1>프로필</h1>
-  <hr>
-<div class="card text-left" style="width: 18rem; margin-bottom: 18rem;!important">
-  <img src="{% static 'unnamed.jpg' %}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{ user.username }}</h5>
-    <p class="card-text"></p>
-    {% with user_followers=user.followers.all %}
-      {% if request.user != user %}
-        {% if request.user in user_followers %}
-          <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">unfollow</a>
-        {% else %}
-          <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">follow</a>
-        {% endif %}
-      {% endif %}
-      <p>followers: {{ user_followers|length }}</p>
-      <p>followings: {{ user.followings.count }}</p>
-    {% endwith %}
-  </div>
-</div>
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card text-left w-25">
+      <h3 class="text-center mt-1">
+        <i class="fas fa-user white-text"></i> Profile
+      </h3>
+      <hr>
+      <img src="{% static 'unnamed.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body container">
+        <div class="row">
+          {% with user_followers=user.followers.all %}
+          <div class="col-4">
+            <h5 class="card-title">{{ user.username }}</h5>
+              {% if request.user != user %}
+                {% if request.user in user_followers %}
+                  <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">unfollow</a>
+                {% else %}
+                  <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">follow</a>
+                {% endif %}
+              {% endif %}
+          </div>
+          <div class="col-4">  
+            <p>팔로워: {{ user_followers|length }}</p>
+          </div>
+          <div class="col-4"> 
+            <p>팔로잉: {{ user.followings.count }}</p>
+          </div>  
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+  </div>  
 {% endblock %}
