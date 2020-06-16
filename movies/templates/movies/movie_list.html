@@ -2,9 +2,9 @@
 {% load bootstrap_pagination %}
 
 {% block content %}
-
+<div class="d-flex jutify-content-center " style="height: 10vh;"></div>
+<div class="bg-light pl-2 pr-2 bg-light">
 <h2>Movie LIST</h2>
-
 <div class="row">
     {% for page in page_obj %}
     <div class="col-lg-4 col-sm-6 mb-4">
@@ -21,8 +21,8 @@
         </div>
     </div>
     {% endfor %}
-<div class="d-flex justify-content-center">
-    {% bootstrap_paginate page_obj range=5 show_prev_next="false" show_first_last="true" %}
+    <div class="pagination jutify-content-center m-auto">
+        {% bootstrap_paginate page_obj range=5 show_prev_next="false" show_first_last="true" %}
+    </div>
 </div>
-
 {% endblock %}
