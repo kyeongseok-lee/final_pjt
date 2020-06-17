@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import Movie, Genre, Review, Comment, Movielist
 from .forms import MovielistForm, ReviewForm, CommentForm
+from django.db.models import Avg
 import datetime
 
 
@@ -55,6 +56,9 @@ def movie_list(request, movielist_pk):
 @login_required
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
+    reviews = movie.review_set.all()
+    avg_rank = reviews.aggregate(Avg('rank'))['rank__avg']
+    # avg_rank = avg_ranks[rank_avg]
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -68,6 +72,7 @@ def movie_detail(request, movie_pk):
     context = {
         'movie': movie,
         'form': form,
+        'avg_rank': avg_rank,
     }
     return render(request, 'movies/movie_detail.html', context)
 

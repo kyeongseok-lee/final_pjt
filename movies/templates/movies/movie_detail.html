@@ -30,6 +30,9 @@
             {% endif %}
             <span id="likeCount{{ movie.pk }}" class="ml-2">{{ movie.users_like.all|length }} 명이 좋아합니다.</span>
           </p>
+          <p class="card-text">
+            <h3 class="d-flex justify-content-end">사용자 평점: <span class="badge badge-success ml-2">{{ avg_rank }}</span></h3>
+          </p>
         </div>
       </div>
     </div>
