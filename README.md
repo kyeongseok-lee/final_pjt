@@ -81,71 +81,73 @@
 
 #### 3-2-1 개발 일지
 
-![notion1](./readme_img/notion1.jpg)
-![notion2](./readme_img/notion2.jpg)
-![notion3](./readme_img/notion3.jpg)
-
+![notion1](https://user-images.githubusercontent.com/60080675/84895780-cfdf4b80-b0dd-11ea-9beb-8911c8173c71.JPG)
+![notion2](https://user-images.githubusercontent.com/60080675/84895766-c9e96a80-b0dd-11ea-8466-755fed6fb9f0.JPG)
+![notion3](https://user-images.githubusercontent.com/60080675/84895833-e38ab200-b0dd-11ea-8cfc-445cfaf9817b.JPG)
 
 
 #### 3-2-2 실제 구현 화면
 
 - ##### Signup (회원 가입)
 
-![signup](./readme_img/signup.jpg)
+![signup](https://user-images.githubusercontent.com/60080675/84895883-fbfacc80-b0dd-11ea-99c5-fb9f87d1d92c.JPG)
+
 
 
 
 - ##### login
 
-![login](./readme_img/login.jpg)
+![login](https://user-images.githubusercontent.com/60080675/84895934-10d76000-b0de-11ea-9213-cf1fabe218dd.JPG)
+
 
 
 
 - ##### index
 
-![index](./readme_img/index.jpg)
+![index](https://user-images.githubusercontent.com/60080675/84895938-13d25080-b0de-11ea-8654-3239e671ea31.jpg)
 
 
 
 - ##### profile
 
-![profile](./readme_img/profile.jpg)
+![profile](https://user-images.githubusercontent.com/60080675/84896025-2b113e00-b0de-11ea-9bcf-ba22c6ab854f.jpg)
 
 
 
 - ##### date-recommend
 
-![date-recommend](./readme_img/date-recommend.jpg)
+![date-recommend](https://user-images.githubusercontent.com/60080675/84896032-2fd5f200-b0de-11ea-8ecb-6e285aa7328d.jpg)
 
-![description1](./readme_img/description1.jpg)
+![description1](https://user-images.githubusercontent.com/60080675/84896035-32384c00-b0de-11ea-928f-87619788920a.jpg)
 
 
 
 - ##### select-recommend
 
-![date-recommend-start](./readme_img/select-recommend-start.jpg)
+![select-recommend-start](https://user-images.githubusercontent.com/60080675/84896103-4e3bed80-b0de-11ea-90fb-b454193716d2.jpg)
 
-![description2](./readme_img/description2.jpg)
+![description2](https://user-images.githubusercontent.com/60080675/84896111-5005b100-b0de-11ea-9034-b7fa21cdc1b9.jpg)
 
-![date-recommend-result](./readme_img/select-recommend-result.jpg)
+![select-recommend-result](https://user-images.githubusercontent.com/60080675/84896114-5136de00-b0de-11ea-87cf-65dd0b29824f.jpg)
 
 
 
 - ##### movie_detail ( 영화 상세, 리뷰 작성 및 수정삭제, 리뷰 목록)
 
-![movie-detail](./readme_img/movie-detail.jpg)
+![movie-detail](https://user-images.githubusercontent.com/60080675/84896157-69a6f880-b0de-11ea-8bbe-10d318a7761c.jpg)
 
 
 
 - ##### review_detail (리뷰 상세, 댓글 작성 및 수정삭제, 댓글 목록)
 
-![review-detail](./readme_img/review-detail.jpg)
+![review-detail](https://user-images.githubusercontent.com/60080675/84896161-6b70bc00-b0de-11ea-9c30-e788d42e6f38.jpg)
 
 
 
 ## 4. 데이터 베이스 모델링 (ERD) :hammer:
 
-![ERD](./readme_img/ERD.jpg)
+![ERD](https://user-images.githubusercontent.com/60080675/84896164-6d3a7f80-b0de-11ea-907d-f206b12f5f9d.JPG)
+
 
 
 
