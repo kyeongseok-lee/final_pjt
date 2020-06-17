@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="d-flex jutify-content-center " style="height: 10vh;"></div>
-<div class="container bg-light pl-2 pr-2">
+<div class="container pl-2 pr-2">
   <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
@@ -29,6 +29,9 @@
             <i class="fas fa-heart fa-lg like-btn mt-1" style="color:black; cursor: pointer;" data-id="{{ movie.pk }}"></i>
             {% endif %}
             <span id="likeCount{{ movie.pk }}" class="ml-2">{{ movie.users_like.all|length }} 명이 좋아합니다.</span>
+          </p>
+          <p class="card-text">
+            <h3 class="d-flex justify-content-end">사용자 평점: <span class="badge badge-success ml-2">{{ avg_rank }}</span></h3>
           </p>
         </div>
       </div>
